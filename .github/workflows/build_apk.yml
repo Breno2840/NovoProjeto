@@ -7,20 +7,20 @@ on:
     branches: [ main ]
 
 env:
-  FLUTTER_VERSION: '3.22.2'  # Versão mais recente e estável
+  FLUTTER_VERSION: '3.22.2'
 
 jobs:
   build:
-    runs-on: ubuntu-24.04  # Usar a imagem mais recente
+    runs-on: ubuntu-24.04
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v4  # Usar versão mais recente
+      uses: actions/checkout@v4
 
     - name: Set up JDK
       uses: actions/setup-java@v4
       with:
-        java-version: '17'  # JDK 17 é recomendado para versões recentes do Flutter
+        java-version: '17'
         distribution: 'temurin'
 
     - name: Setup Flutter
@@ -32,29 +32,30 @@ jobs:
         cache-key: flutter-${{ env.FLUTTER_VERSION }}
         cache-path: /home/runner/.pub-cache
 
+    - name: Disable Flutter analytics
+      run: flutter config --no-analytics
+
     - name: Show Flutter version
       run: flutter --version
 
     - name: Install dependencies
-      run: |
-        flutter pub get
-        flutter pub run build_runner build --delete-conflicting-outputs
+      run: flutter pub get
 
     - name: Run tests
       run: flutter test
 
     - name: Build APK
-      run: flutter build apk --release --no-tree-shake-icons
+      run: flutter build apk --release
 
     - name: Upload APK artifact
-      uses: actions/upload-artifact@v4  # Versão mais recente
+      uses: actions/upload-artifact@v4
       with:
         name: radio-tropical-apk
         path: build/app/outputs/flutter-apk/app-release.apk
         retention-days: 7
 
     - name: Build App Bundle (AAB)
-      run: flutter build appbundle --release --no-tree-shake-icons
+      run: flutter build appbundle --release
 
     - name: Upload App Bundle artifact
       uses: actions/upload-artifact@v4
