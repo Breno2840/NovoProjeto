@@ -6,15 +6,14 @@ plugins {
 
 android {
     namespace = "com.calculadora.my"
-    // A versão do SDK de compilação é gerenciada pelo Flutter.
-    compileSdk = 34
+    // CORREÇÃO AQUI: Atualizado de 34 para 36
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.calculadora.my"
-        // A SDK mínima é 21 para os pacotes de áudio.
         minSdk = 21
-        // A SDK alvo é gerenciada pelo Flutter.
-        targetSdk = 34
+        // CORREÇÃO AQUI: Atualizado de 34 para 36
+        targetSdk = 36
         versionCode = 1
         versionName = "1.0"
     }
@@ -27,11 +26,7 @@ android {
 
     buildTypes {
         release {
-            // Enables code shrinking, obfuscation, and optimization for only
-            // your project's release build type.
             isMinifyEnabled = true
-            // Enables resource shrinking, which is performed by the
-            // Android Gradle plugin.
             isShrinkResources = true
             signingConfig = signingConfigs.getByName("release")
         }
