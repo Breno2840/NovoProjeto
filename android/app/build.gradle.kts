@@ -4,38 +4,35 @@ plugins {
     id("dev.flutter.flutter-gradle-plugin")
 }
 
-fun localProperties(): java.util.Properties {
-    val localPropertiesFile = rootProject.file("local.properties")
-    val properties = java.util.Properties()
-    if (localPropertiesFile.exists()) {
-        properties.load(java.io.FileInputStream(localPropertiesFile))
-    }
-    return properties
-}
-
-val flutterVersionCode: String by localProperties()
-val flutterVersionName: String by localProperties()
-
 android {
-    namespace = "com.calculadora.my" // Seu package name aqui
-    compileSdk = 34 // O Flutter define isso automaticamente
+    namespace = "com.calculadora.my"
+    // A versão do SDK de compilação é gerenciada pelo Flutter.
+    compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.calculadora.my" // E aqui também
-        minSdk = 21 // Requisito mínimo para os pacotes de áudio
-        targetSdk = 34 // O Flutter define isso
-        versionCode = flutterVersionCode.toInt()
-        versionName = flutterVersionName
+        applicationId = "com.calculadora.my"
+        // A SDK mínima é 21 para os pacotes de áudio.
+        minSdk = 21
+        // A SDK alvo é gerenciada pelo Flutter.
+        targetSdk = 34
+        versionCode = 1
+        versionName = "1.0"
     }
 
     signingConfigs {
         create("release") {
-            // Configuração para assinatura do app de release
+            // Você pode configurar a assinatura do seu app de release aqui no futuro.
         }
     }
 
     buildTypes {
         release {
+            // Enables code shrinking, obfuscation, and optimization for only
+            // your project's release build type.
+            isMinifyEnabled = true
+            // Enables resource shrinking, which is performed by the
+            // Android Gradle plugin.
+            isShrinkResources = true
             signingConfig = signingConfigs.getByName("release")
         }
     }
@@ -61,4 +58,3 @@ flutter {
 }
 
 dependencies {}
-
