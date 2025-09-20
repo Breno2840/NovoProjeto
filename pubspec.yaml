@@ -1,26 +1,51 @@
-name: radio_tropical
-description: Aplicativo de Rádio Tropical com notificações
+name: radio_app # Você pode alterar para o nome do seu projeto
+description: "Um aplicativo simples para ouvir rádio online."
 
-publish_to: 'none'
+# A linha a seguir impede que o pacote seja publicado acidentalmente em
+# pub.dev.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
+# A versão do seu aplicativo. A versão é composta por três números separados
+# por pontos, como 1.2.43, seguido opcionalmente por um número de build separado por um +.
 version: 1.0.0+1
 
 environment:
-  sdk: '>=2.17.0 <3.0.0'
+  sdk: '>=3.0.0 <4.0.0' # Ajuste a versão do SDK do Dart se necessário
 
+# Dependências que seu aplicativo precisa para funcionar.
 dependencies:
   flutter:
     sdk: flutter
-  just_audio: ^0.9.35
-  audio_service: ^0.18.9
-  just_audio_background: ^0.0.1+16
 
+  # Pacote para gerenciar o serviço de áudio em segundo plano e notificações.
+  audio_service: ^0.18.12
+
+  # Pacote para tocar o áudio.
+  just_audio: ^0.9.36
+
+  # Dependência reativa necessária para o just_audio.
+  rxdart: ^0.27.7
+
+  # Pacote de ícones do iOS.
+  cupertino_icons: ^1.0.2
+
+# Dependências usadas apenas durante o desenvolvimento ou teste.
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^1.0.0
 
+  # Pacote para análise de código e regras de lint.
+  flutter_lints: ^2.0.0
+
+# A seção a seguir é específica para o Flutter.
 flutter:
+
+  # A linha a seguir garante que a fonte Material Icons esteja
+  # incluída no seu aplicativo, permitindo o uso dos ícones da classe Icons.
   uses-material-design: true
-  assets:
-    - assets/radio_icon.png
+
+  # Para adicionar assets (como imagens ou fontes) ao seu aplicativo, adicione uma seção "assets" como esta:
+  # assets:
+  #   - images/a_dot_burr.jpeg
+  #   - images/a_dot_ham.jpeg
+
