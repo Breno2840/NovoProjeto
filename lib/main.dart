@@ -102,7 +102,8 @@ class AudioPlayerHandler extends BaseAudioHandler with SeekHandler {
       case ProcessingState.completed:
         return AudioProcessingState.completed;
       default:
-        return AudioProcessingState.unknown;
+        // CORREÇÃO AQUI: Trocado 'unknown' por 'error'
+        return AudioProcessingState.error;
     }
   }
 }
@@ -174,7 +175,8 @@ class MyApp extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         IconButton(
-                          icon: const Icon(Icons.pause_circle_fill),
+                          // CORREÇÃO AQUI: Trocado 'pause_circle_fill' por 'pause_circle_filled'
+                          icon: const Icon(Icons.pause_circle_filled),
                           iconSize: 80.0,
                           color: Colors.white,
                           onPressed: audioHandler.pause,
